@@ -5,7 +5,7 @@ export default async function Home() {
   const user = await currentUser();
   return (
     <div className="flex flex-col flex-1 items-center justify-center font-sans dark:bg-black">
-      <UserButton  user={user} />      
+           <h1>Hello World</h1>
     </div>
   );
 }
