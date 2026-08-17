@@ -207,7 +207,7 @@ export default function UserButton({
             <DropdownMenuItem
               onClick={handleLogout}
               disabled={isLoading}
-              className="cursor-pointer text-destructive focus:text-destructive"
+              className="cursor-pointer focus:text-destructive"
             >
               <LogOut className="mr-2 h-4 w-4" />
               {isLoading ? "Logging out..." : "Log out"}
