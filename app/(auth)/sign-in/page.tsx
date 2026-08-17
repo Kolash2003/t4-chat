@@ -14,7 +14,7 @@ const SignInPage = () => {
 
 
             <p className="mt-2 text-lg text-muted-foreground font-semibold">
-                Sign in below (we'll increase your message limits if you do 😉)
+                Sign in below (we&apos;ll increase your message limits if you do 😉)
             </p>
 
             <Button
