@@ -1,30 +1,5 @@
 import { NextResponse } from "next/server";
-
-interface OpenRouterModel {
-    id: string;
-    name: string;
-    description: string | null;
-    context_length: number;
-    architecture: {
-        input_modalities: string[];
-        output_modalities: string[];
-        tokenizer: string;
-        instruct_type: string | null;
-    };
-    pricing: {
-        prompt: string;
-        completion: string;
-        request: string;
-        image: string;
-        web_search: string;
-        internal_reasoning: string;
-    };
-    top_provider: {
-        context_length: number;
-        max_completion_tokens: number;
-        is_moderated: boolean;
-    };
-}
+import type { AIModel } from "@/modules/chat/types";
 
 export async function GET() {
     try {
@@ -43,7 +18,7 @@ export async function GET() {
             });
         }
 
-        const data = (await response.json()) as { data: OpenRouterModel[] };
+        const data = (await response.json()) as { data: AIModel[] };
 
         const freeModels = data.data.filter(model => {
             const promptPrice = parseFloat(model.pricing?.prompt || "0");

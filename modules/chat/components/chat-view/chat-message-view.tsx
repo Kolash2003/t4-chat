@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react'
 import ChatWelcomeTabs from './chat-welcome-tabs';
+import ChatMessageForm from './chat-message-form';
 
 type ChatUser = {
     name: string | null;
@@ -14,15 +15,21 @@ const ChatMessageView = ({ user }: { user: ChatUser }) => {
         setSelectedMessage(message);
     }
 
+    const handleMessageChange = () => {
+      setSelectedMessage("");
+    }
+
   return (
     <div className='flex flex-col items-center justify-center h-screen space-y-10'>
       <ChatWelcomeTabs
         username={user?.name ?? undefined}
         onMessageSelect={handleMessageSelect}
         />
-      {selectedMessage && (
-        <p className="text-sm text-muted-foreground">{selectedMessage}</p>
-      )}
+      
+      <ChatMessageForm 
+        intialMessage={selectedMessage}
+        onMessageChange={handleMessageChange}
+      />
     </div>
   )
 }
