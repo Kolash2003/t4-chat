@@ -3,30 +3,27 @@
 import React from 'react'
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { cn } from '@/lib/utils';
 import UserButton from '@/modules/authentication/components/user-button';
 import {
     PlusIcon,
     SearchIcon,
-    MenuIcon,
-    EllipsisIcon,
-    Trash,
     X,
   } from "lucide-react";
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useMemo } from 'react';
-import { isToday, isYesterday, isWithinInterval, subDays } from 'date-fns';
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-  } from "@/components/ui/dropdown-menu";
+import { useState } from 'react';
 
-const ChatSideBar = ({user}) => {
+type ChatSideBarUser = {
+    id: string;
+    name: string;
+    email: string;
+    emailVerified: boolean;
+    image?: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+} | null;
+
+const ChatSideBar = ({ user }: { user: ChatSideBarUser }) => {
     const [searchQuery, setSearchQuery] = useState("");
 
 
@@ -75,9 +72,9 @@ const ChatSideBar = ({user}) => {
 
         {/* Footer */}
         <div className="p-4 flex items-center gap-3 border-t border-sidebar-border">
-            <UserButton user={user} />
+            <UserButton user={user ? { ...user, image: user.image ?? null } : null} />
             <span className="flex-1 text-sm text-sidebar-foreground truncate">
-                {user.email}
+                {user?.email}
             </span>
       </div>
     </div>
